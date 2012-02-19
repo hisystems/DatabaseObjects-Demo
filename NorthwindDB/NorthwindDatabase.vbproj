@@ -86,10 +86,6 @@
     <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EffiProz, Version=1.5.4016.30244, Culture=neutral, PublicKeyToken=9c147f7358eea142, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Visual Studio Projects\effiproz_db_1_5_4016_30245\EffiProz.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -138,7 +134,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\source\DatabaseObjects.vbproj">
+    <ProjectReference Include="..\..\DatabaseObjects\DatabaseObjects.vbproj">
       <Project>{5A77FD9E-F9DD-44D6-BE59-2A45C1D6B6BC}</Project>
       <Name>DatabaseObjects</Name>
     </ProjectReference>
