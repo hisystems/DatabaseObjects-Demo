@@ -6,13 +6,12 @@ Imports System.Collections
 
 <DatabaseObjects.Table("Orders")>
 <DatabaseObjects.DistinctField("OrderID", True)>
-<DatabaseObjects.ItemInstance(GetType(Order))>
 Public Class Orders
-    Inherits DatabaseObjects.Generic.DatabaseObjectsListUsingAttributes(Of Order)
+    Inherits DatabaseObjects.Generic.DatabaseObjectsList(Of Order)
 
-    Public Sub New()
+    Friend Sub New(parent As NorthwindDB)
 
-        MyBase.New(NorthwindDB.Database)
+        MyBase.New(parent)
 
     End Sub
 
@@ -36,7 +35,7 @@ End Class
 
 
 Public Class Order
-    Inherits DatabaseObjects.DatabaseObjectUsingAttributes
+    Inherits DatabaseObjects.DatabaseObject
 
     Private pobjDetails As OrderDetails
 
@@ -71,9 +70,9 @@ Public Class Order
 
     Public ReadOnly RequiredDateIsSet As DatabaseObjects.Constraints.ConstraintBinding(Of Date)
 
-    Public Sub New()
+    Friend Sub New(parent As Orders)
 
-        MyBase.New(NorthwindDB.Orders)
+        MyBase.New(parent)
 
         DateIsSet = New DatabaseObjects.Constraints.ConstraintBinding(Of Date)(Function() TheDate, New DatabaseObjects.Constraints.DateIsSetConstraint())
         DateIsValid = New DatabaseObjects.Constraints.ConstraintBinding(Of Date)(Function() TheDate, New DatabaseObjects.Constraints.DateIsTodayOrFutureForNewObjectConstraint(Me))
@@ -207,9 +206,8 @@ End Class
 <DatabaseObjects.DistinctField("ProductID")>
 <DatabaseObjects.Table("Order Details")>
 <DatabaseObjects.Subset("OrderID")>
-<DatabaseObjects.ItemInstance(GetType(OrderDetail))>
 Public Class OrderDetails
-    Inherits DatabaseObjects.Generic.DatabaseObjectsVolatileListUsingAttributes(Of OrderDetail)
+    Inherits DatabaseObjects.Generic.DatabaseObjectsVolatileList(Of OrderDetail)
 
     Friend Sub New(ByVal objParent As Order)
 
@@ -244,10 +242,11 @@ End Class
 
 
 Public Class OrderDetail
-    Inherits DatabaseObjects.DatabaseObjectUsingAttributes
+    Inherits DatabaseObjects.DatabaseObject
 
     <DatabaseObjects.FieldMapping("ProductID")> _
-    Private pobjProduct As New DatabaseObjects.Generic.ObjectReference(Of Product)(NorthwindDB.Products)
+    <DatabaseObjects.ObjectReferenceEarlyBinding()> _
+    Private pobjProduct As DatabaseObjects.Generic.ObjectReference(Of Product)
 
     <DatabaseObjects.FieldMapping("UnitPrice")> _
     Private pcurUnitPrice As Decimal
@@ -261,6 +260,8 @@ Public Class OrderDetail
     Friend Sub New(ByVal objParent As OrderDetails)
 
         MyBase.New(objParent)
+
+        pobjProduct = New DatabaseObjects.Generic.ObjectReference(Of Product)(MyBase.RootContainer(Of NorthwindDB).Products)
 
     End Sub
 

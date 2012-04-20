@@ -1,4 +1,6 @@
 
+Option Infer On
+
 Public Class ProductSearch
 
     'This class provides the ability to search on multiple fields on multiple criteria
@@ -21,6 +23,20 @@ Public Class ProductSearch
     Private peInStock As TriState = TriState.Default
     Private peOnOrder As TriState = TriState.Default
     Private peDiscontinued As TriState = TriState.Default
+
+    Private _database As DatabaseObjects.Database
+    Private _products As NorthwindDatabase.Products
+
+    Friend Sub New(products As NorthwindDatabase.Products, database As DatabaseObjects.Database)
+
+        If database Is Nothing Then
+            Throw New ArgumentNullException
+        End If
+
+        Me._database = database
+        Me._products = products
+
+    End Sub
 
     Public WriteOnly Property Name() As String
         Set(ByVal Value As String)
@@ -56,20 +72,10 @@ Public Class ProductSearch
 
     Public Function Search() As Collections.Generic.IList(Of Product)
 
-        Dim objProducts As DatabaseObjects.IDatabaseObjects
         Dim objProduct As Product
-        Dim objResults As IDataReader
-        Dim objResultsList As New Collections.Generic.List(Of Product)
         Dim objSelect As New DatabaseObjects.SQL.SQLSelect
 
-        'The TableJoins function will join the Products and Suppliers tables so that the
-        'results are returned in one recordset, rather than requiring multiple statements to read
-        'each product's associated supplier record. See the Products' TableJoins
-        'on how this is done.
-
-        objProducts = NorthwindDB.Products
-        objSelect.Tables.Add(objProducts.TableName)
-        objSelect.Tables.Joins = objProducts.TableJoins(objSelect.Tables(0), objSelect.Tables)
+        objSelect.Tables.Add("Products")
 
         'search for the product name if it has been set
         If pstrName <> Nothing Then
@@ -102,15 +108,16 @@ Public Class ProductSearch
 
         objSelect.OrderBy.Add("ProductName", DatabaseObjects.SQL.OrderBy.Ascending)
 
-        NorthwindDB.Database.Connection.Start()
-        objResults = NorthwindDB.Database.Connection.Execute(objSelect)
+        Dim objResultsList As New Collections.Generic.List(Of Product)
 
-        While objResults.Read()
-            objProduct = DatabaseObjects.Database.ObjectFromDataReader(NorthwindDB.Products, objResults)
-            objResultsList.Add(objProduct)
-        End While
+        Using connection As New DatabaseObjects.ConnectionScope(_database)
+            Dim objResults = connection.Execute(objSelect)
 
-        NorthwindDB.Database.Connection.Finished()
+            While objResults.Read()
+                objProduct = DatabaseObjects.Database.ObjectFromDataReader(_products, objResults)
+                objResultsList.Add(objProduct)
+            End While
+        End Using
 
         Return objResultsList
 

@@ -1,5 +1,6 @@
 Option Strict Off
-Option Explicit On 
+Option Explicit On
+Option Infer On
 
 Imports NorthwindDatabase
 
@@ -310,7 +311,7 @@ Friend Class frmProductSearchExtended
 
     Private Sub cmdSearch_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cmdSearch.Click
 
-        Dim objSearch As New ProductSearch
+        Dim objSearch = Northwind.Program.NorthWindDB.ProductSearch
 
         objSearch.Name = Me.txtProductName.Text
 

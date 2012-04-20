@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1><strong>Welcome to the DatabaseObjects demonstration</strong><br>
+</h1>
+<p>This program provides some examples of the different ways the DatabaseObjects
+  library can be used. Currently, the
+  DatabaseObjects
+  library
+  can
+  successfully connect to SQL Server, Microsoft Access and MySQL databases. If
+  you would like me to add another database feel free to send me an email - <a href="mailto:toby@hisystems.com.au">toby@hisystems.com.au</a>.
+  By default the
+  program will connect to the <strong>C:\Program Files\Microsoft Visual Studio\VB98\nwind.mdb </strong>  database.
+  The nwind.mdb database is available at the Microsoft website <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=C6661372-8DBE-422B-8676-C632D66C529C&displaylang=EN" target="_blank">here</a> should
+  you need it. If you would like to test with SQL
+  Server uncomment
+  the
+  NorthWindDB.Connect_SQLServer
+  function in frmMain and change the database server if necessary. Or to test
+  with MySQL extract the mysql version of the northwind database from <a href="../../../../data/mysql_northwind.zip">data/mysql_northwind.zip</a> into
+  the data directory and uncomment the NorthWindDB.Connect_MySQL function in
+  frmMain. To view all
+  of the SQL statements that are being executed, turn
+  on
+  the DebugSQL compilation
+  option in the DatabaseObjects project. </p>
+    <p>The source code for DatabaseObjects and the demonstration project are currently 
+        hosted on <a href="https://github.com/hisystems/DatabaseObjects-Demo">Github</a>.</p>
+<p>The .NET version provides a number of  classes that further improve the usefullness
+  and speed with which classes can be created. See the DatabaseObjects, DatabaseObjectsEnumerable,
+  DatabaseObject and DatabaseObjectUsingAttributes MustInherit/abstract classes.
+  These classes still implement the IDatabaseObjects
+  and IDatabaseObject interfaces
+  but implement the
+  basic
+  functionality that they require, and provide a simpler, more convenient and
+  intuitive use of the library. <br>
+</p>
+<h3>1. Search Products</h3>
+<p>Demonstrates how to implement the SearchCriteria
+function in the Products class.</p>
+<h3><br>
+  2. Search Products (Extended)</h3>
+<p>Demonstrates a more complex set of search criteria as opposed
+  to the simple search demonstrated in the 'Search Products' window.
+  It also demonstrates joining tables (in this case the Products table
+  and
+  the Supplier table) to optimise the loading speed of the products, in addition
+  to demonstrating how to load a
+Product and Supplier object from the same database record.</p>
+<h3><br>
+  3. View an Order</h3>
+<p>Demonstrates an implementation for a <em>header </em>and associated<em> detail</em> table.
+  In this example, with the Orders and OrderDetails tables.</p>
+<h3></h3>
+</body>
+</html>

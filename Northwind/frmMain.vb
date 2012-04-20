@@ -322,25 +322,8 @@ Friend Class frmMain
 
     Private Sub frmMain_Load(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles MyBase.Load
 
-        Const cstrAccessFilePath As String = "C:\Program Files\Microsoft Visual Studio\VB98\nwind.mdb"
-
-        Try
-
-            NorthwindDB.Connect_MicrosoftAccess(cstrAccessFilePath)
-            'NorthwindDB.Connect_SQLServer("localhost", "Northwind")
-            'NorthwindDB.Connect_MySQL("localhost", "northwind")
-
-            lblWelcome_Click(lblWelcome, New System.EventArgs)
-
-        Catch ex As Exception
-
-            If MessageBox.Show("Could not connect to the Northwind Access database at '" & cstrAccessFilePath & "', would you like to download the database from the Microsoft website?", "Northwind", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
-                Me.wbMain.Navigate("http://www.microsoft.com/downloads/details.aspx?FamilyID=C6661372-8DBE-422B-8676-C632D66C529C&displaylang=EN")
-            End If
-
-        End Try
-
         Me.WindowState = FormWindowState.Maximized
+        lblWelcome_Click(lblWelcome, New System.EventArgs)
 
     End Sub
 
@@ -376,15 +359,13 @@ Friend Class frmMain
 
     Private Sub lblDocumentation_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles lblDocumentation.Click
 
-        'Me.wbMain.Navigate(Application.StartupPath & "\..\..\..\..\documentation\reference.htm")
-        'Me.wbMain.Navigate("mk:@MSITStore:" & Application.StartupPath & "\..\..\..\..\documentation\DatabaseObjects.chm::/html/N_DatabaseObjects.htm")
-        Me.wbMain.Navigate(Application.StartupPath & "\..\..\..\..\documentation\DatabaseObjects.chm")
+        Me.wbMain.Navigate("http://www.hisystems.com.au/databaseobjects/documentation_net/")
 
     End Sub
 
     Private Sub lblGeneralIntroduction_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles lblGeneralIntroduction.Click
 
-        Me.wbMain.Navigate(Application.StartupPath & "\..\..\..\..\documentation\DatabaseObjects_QuickStart_net.htm")
+        Me.wbMain.Navigate("http://www.hisystems.com.au/databaseobjects/DatabaseObjects_QuickStart_net.htm")
 
     End Sub
 

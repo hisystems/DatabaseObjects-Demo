@@ -5,56 +5,45 @@ Option Explicit On
 Imports DatabaseObjects
 
 Public Class NorthwindDB
+    Inherits DatabaseObjects.RootContainer
 
-    Private Shared pobjProducts As Products
-    Private Shared pobjOrders As Orders
+    Private _products As Products
+    Private _orders As Orders
 
-    Friend Shared Database As DatabaseObjects.Database
+    Public Sub New(ByVal database As Database)
 
-    Private Sub New()
-
-    End Sub
-
-    Public Shared Sub Connect_SQLServer(ByVal strDataSource As String, ByVal strDatabaseName As String)
-
-        Database = New DatabaseObjects.MicrosoftSQLServerDatabase(strDataSource, strDatabaseName)
+        MyBase.New(database)
 
     End Sub
 
-    Public Shared Sub Connect_MicrosoftAccess(ByVal strDatabaseFilePath As String)
-
-        Database = New DatabaseObjects.MicrosoftAccessDatabase(strDatabaseFilePath)
-
-    End Sub
-
-    Public Shared Sub Connect_MySQL(ByVal strDataSource As String, ByVal strDatabaseName As String)
-
-        Database = New DatabaseObjects.MySQLDatabase(strDataSource, strDatabaseName, "root", String.Empty)
-
-    End Sub
-
-    Public Shared ReadOnly Property Products() As Products
+    Public ReadOnly Property Products() As Products
         Get
 
-            If pobjProducts Is Nothing Then
-                pobjProducts = New Products(Database)
+            If _products Is Nothing Then
+                _products = New Products(Me)
             End If
 
-            Return pobjProducts
+            Return _products
 
         End Get
     End Property
 
-    Public Shared ReadOnly Property Orders() As Orders
+    Public ReadOnly Property Orders() As Orders
         Get
 
-            If pobjOrders Is Nothing Then
-                pobjOrders = New Orders()
+            If _orders Is Nothing Then
+                _orders = New Orders(Me)
             End If
 
-            Return pobjOrders
+            Return _orders
 
         End Get
     End Property
+
+    Public Function ProductSearch() As ProductSearch
+
+        Return New ProductSearch(Me.Products, MyBase.Database)
+
+    End Function
 
 End Class

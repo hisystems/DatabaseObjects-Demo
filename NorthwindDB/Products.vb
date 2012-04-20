@@ -9,20 +9,19 @@ Imports System.Collections
 ''' </summary>
 <DatabaseObjects.Table("Products")>
 <DatabaseObjects.DistinctField("ProductID", True)>
-<DatabaseObjects.ItemInstance(GetType(Product))>
 <DatabaseObjects.KeyField("ProductName")>
 <DatabaseObjects.OrderByField("ProductName")>
 Public Class Products
-    Inherits DatabaseObjects.Generic.DatabaseObjectsListKeyedUsingAttributes(Of Product, String)
+    Inherits DatabaseObjects.Generic.DatabaseObjectsListKeyed(Of Product, String)
 
     Public Enum SearchType
         NamePrefix
         Name
     End Enum
 
-    Friend Sub New(ByVal objDatabase As DatabaseObjects.Database)
+    Friend Sub New(parent As NorthwindDB)
 
-        MyBase.New(objDatabase)
+        MyBase.New(parent)
 
     End Sub
 
@@ -64,7 +63,7 @@ End Class
 
 
 Public Class Product
-    Inherits DatabaseObjects.DatabaseObjectUsingAttributes
+    Inherits DatabaseObjects.DatabaseObject
 
     <DatabaseObjects.FieldMapping("ProductName")> _
     Private pstrName As String
@@ -84,9 +83,9 @@ Public Class Product
     <DatabaseObjects.FieldMapping("Discontinued")> _
     Private pbDiscontinued As Boolean
 
-    Public Sub New()
+    Friend Sub New(parent As Products)
 
-        MyBase.New(NorthwindDB.Products)
+        MyBase.New(parent)
 
     End Sub
 

@@ -563,7 +563,7 @@ Friend Class frmOrder
     Private Sub cmdDelete_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles cmdDelete.Click
 
         If MessageBox.Show("Are you sure you want to delete this order.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
-            NorthwindDB.Orders.Delete(pobjOrder)
+            Program.NorthWindDB.Orders.Delete(pobjOrder)
             Me.Close()
         End If
 
@@ -595,7 +595,7 @@ Friend Class frmOrder
 
     Private Sub frmOrder_Load(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles MyBase.Load
 
-        pobjOrder = NorthwindDB.Orders.First
+        pobjOrder = Program.NorthWindDB.Orders.First
         LoadOrder(pobjOrder)
 
     End Sub
@@ -606,7 +606,7 @@ Friend Class frmOrder
 
         With cboBox
             .Items.Clear()
-            For Each objProduct In NorthwindDB.Products
+            For Each objProduct In Program.NorthWindDB.Products
                 .Items.Add(objProduct.Name)
             Next
             .SelectedIndex = 0
