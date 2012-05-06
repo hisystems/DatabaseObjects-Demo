@@ -106,6 +106,16 @@
     <Compile Include="Misc.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="NorthwindImport\CategoriesImport.vb" />
+    <Compile Include="NorthwindImport\CustomersImport.vb" />
+    <Compile Include="NorthwindImport\DatabaseTableImport.vb" />
+    <Compile Include="NorthwindImport\NorthwindImport.vb" />
+    <Compile Include="NorthwindImport\EmployeesImport.vb" />
+    <Compile Include="NorthwindImport\OrderDetailsImport.vb" />
+    <Compile Include="NorthwindImport\OrdersImport.vb" />
+    <Compile Include="NorthwindImport\ProductsImport.vb" />
+    <Compile Include="NorthwindImport\ShippersImport.vb" />
+    <Compile Include="NorthwindImport\SuppliersImport.vb" />
     <Compile Include="NorthwindDB.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -138,6 +148,16 @@
       <Project>{5A77FD9E-F9DD-44D6-BE59-2A45C1D6B6BC}</Project>
       <Name>DatabaseObjects</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NorthwindImport\Data\Categories.csv" />
+    <EmbeddedResource Include="NorthwindImport\Data\Customers.csv" />
+    <EmbeddedResource Include="NorthwindImport\Data\Employees.csv" />
+    <EmbeddedResource Include="NorthwindImport\Data\OrderDetails.csv" />
+    <EmbeddedResource Include="NorthwindImport\Data\Orders.csv" />
+    <EmbeddedResource Include="NorthwindImport\Data\Products.csv" />
+    <EmbeddedResource Include="NorthwindImport\Data\Shippers.csv" />
+    <EmbeddedResource Include="NorthwindImport\Data\Suppliers.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

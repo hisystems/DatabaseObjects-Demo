@@ -204,7 +204,7 @@ End Class
 'together with the 'OrderID' field will determine which record each OrderDetail
 'object is associated with.
 <DatabaseObjects.DistinctField("ProductID")>
-<DatabaseObjects.Table("Order Details")>
+<DatabaseObjects.Table("OrderDetails")>
 <DatabaseObjects.Subset("OrderID")>
 Public Class OrderDetails
     Inherits DatabaseObjects.Generic.DatabaseObjectsVolatileList(Of OrderDetail)
