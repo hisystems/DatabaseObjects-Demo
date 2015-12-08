@@ -170,8 +170,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DatabaseObjects\DatabaseObjects.vbproj">
-      <Project>{5A77FD9E-F9DD-44D6-BE59-2A45C1D6B6BC}</Project>
+    <ProjectReference Include="..\..\DatabaseObjects\DatabaseObjects.csproj">
+      <Project>{5a77fd9e-f9dd-44d6-be59-2a45c1d6b6bc}</Project>
       <Name>DatabaseObjects</Name>
     </ProjectReference>
     <ProjectReference Include="..\NorthwindDB\NorthwindDatabase.vbproj">

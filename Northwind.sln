@@ -1,5 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Northwind", "Northwind\Northwind.vbproj", "{AF4BA40E-0DD9-4CC3-9934-AA6B69D1F3C9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{799BA4AE-1D82-43A1-A12D-8823278E9E2E} = {799BA4AE-1D82-43A1-A12D-8823278E9E2E}
@@ -10,7 +12,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NorthwindDatabase", "Northw
 		{5A77FD9E-F9DD-44D6-BE59-2A45C1D6B6BC} = {5A77FD9E-F9DD-44D6-BE59-2A45C1D6B6BC}
 	EndProjectSection
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DatabaseObjects", "..\DatabaseObjects\DatabaseObjects.vbproj", "{5A77FD9E-F9DD-44D6-BE59-2A45C1D6B6BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseObjects", "..\DatabaseObjects\DatabaseObjects.csproj", "{5A77FD9E-F9DD-44D6-BE59-2A45C1D6B6BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
